@@ -8,12 +8,10 @@ target 'petCityRegister' do
   # Pods for petCityRegister
   pod 'Backendless'
   pod 'SCLAlertView'
-  pod 'GooglePlaces'
-  pod 'GooglePlacePicker'
-  pod 'GoogleMaps'
   pod 'Eureka', '~> 2.0'
   pod 'DKImagePickerController'
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire', '~> 4.4'
+  pod 'Kingfisher', '~> 3.0'
 
 end

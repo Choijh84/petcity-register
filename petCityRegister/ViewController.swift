@@ -17,6 +17,11 @@ class ViewController: FormViewController {
     /// value of all rows in the form
     var valueDictionary = [String: AnyObject]()
     
+    // 불러오는 뷰로 이동
+    @IBAction func loadStore(_ sender: Any) {
+        performSegue(withIdentifier: "loadStore", sender: nil)
+    }
+    
     // 저장
     @IBAction func saveStore(_ sender: Any) {
         valueDictionary = form.values(includeHidden: false) as [String: AnyObject]
@@ -251,7 +256,12 @@ class ViewController: FormViewController {
                         convertedString.append("펫 호텔")
                     case "Pet Shop":
                         convertedString.append("펫 분양샵")
-                    
+                    case "Pet Training":
+                        convertedString.append("펫 분양샵")
+                    case "Pet Kindergarden":
+                        convertedString.append("펫 유치원")
+                    case "Pet Playground":
+                        convertedString.append("펫 놀이방")
                     default:
                         convertedString = "작업 중입니다"
                 }
@@ -288,8 +298,6 @@ class ViewController: FormViewController {
             print("Server reporeted an error to save the store: \(String(describing: Fault?.description))")
             completionHandler(false, nil, Fault?.description)
         })
-
-        
     }
     
     func multipleSelectorDone(_ item:UIBarButtonItem) {

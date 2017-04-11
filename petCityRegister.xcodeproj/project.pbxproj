@@ -18,6 +18,11 @@
 		BE6F29E21E94D67A009A59C4 /* StoreCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29E11E94D67A009A59C4 /* StoreCategory.swift */; };
 		BE6F29E41E9566E7009A59C4 /* photoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29E31E9566E7009A59C4 /* photoManager.swift */; };
 		BE7A22961E9732A300EBF36A /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7A22951E9732A300EBF36A /* ThirdViewController.swift */; };
+		BEE9CF3D1E9D2A7900E36186 /* loadStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF3C1E9D2A7900E36186 /* loadStoreViewController.swift */; };
+		BEE9CF401E9D303200E36186 /* showResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF3F1E9D303200E36186 /* showResultViewController.swift */; };
+		BEE9CF421E9D38CA00E36186 /* FirstInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */; };
+		BEE9CF441E9D4D5600E36186 /* SecondInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF431E9D4D5600E36186 /* SecondInfoViewController.swift */; };
+		BEE9CF461E9D589400E36186 /* ThirdInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF451E9D589400E36186 /* ThirdInfoViewController.swift */; };
 		BEFA14D71E9B7005007AEEDC /* AddressClassficiationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA14D61E9B7005007AEEDC /* AddressClassficiationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +42,11 @@
 		BE6F29E11E94D67A009A59C4 /* StoreCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategory.swift; sourceTree = "<group>"; };
 		BE6F29E31E9566E7009A59C4 /* photoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoManager.swift; sourceTree = "<group>"; };
 		BE7A22951E9732A300EBF36A /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		BEE9CF3C1E9D2A7900E36186 /* loadStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadStoreViewController.swift; sourceTree = "<group>"; };
+		BEE9CF3F1E9D303200E36186 /* showResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showResultViewController.swift; sourceTree = "<group>"; };
+		BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstInfoViewController.swift; sourceTree = "<group>"; };
+		BEE9CF431E9D4D5600E36186 /* SecondInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInfoViewController.swift; sourceTree = "<group>"; };
+		BEE9CF451E9D589400E36186 /* ThirdInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdInfoViewController.swift; sourceTree = "<group>"; };
 		BEFA14D61E9B7005007AEEDC /* AddressClassficiationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressClassficiationViewController.swift; sourceTree = "<group>"; };
 		EB1DB61B582FA04919EAB8C6 /* Pods-petCityRegister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petCityRegister.release.xcconfig"; path = "Pods/Target Support Files/Pods-petCityRegister/Pods-petCityRegister.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +93,7 @@
 		BE6F29C01E94BBBB009A59C4 /* petCityRegister */ = {
 			isa = PBXGroup;
 			children = (
+				BEE9CF3E1E9D2C3F00E36186 /* LoadStore */,
 				BE6F29E01E94D670009A59C4 /* Object */,
 				BE6F29D61E94BD30009A59C4 /* petCityRegister-Bridging-Header.h */,
 				BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */,
@@ -106,6 +117,18 @@
 				BE6F29DA1E94BE8E009A59C4 /* Store.swift */,
 			);
 			name = Object;
+			sourceTree = "<group>";
+		};
+		BEE9CF3E1E9D2C3F00E36186 /* LoadStore */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9CF3C1E9D2A7900E36186 /* loadStoreViewController.swift */,
+				BEE9CF3F1E9D303200E36186 /* showResultViewController.swift */,
+				BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */,
+				BEE9CF431E9D4D5600E36186 /* SecondInfoViewController.swift */,
+				BEE9CF451E9D589400E36186 /* ThirdInfoViewController.swift */,
+			);
+			name = LoadStore;
 			sourceTree = "<group>";
 		};
 		EA5A09E4FFF5C5F6B6AC63C8 /* Frameworks */ = {
@@ -241,11 +264,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE9CF401E9D303200E36186 /* showResultViewController.swift in Sources */,
 				BE6F29E41E9566E7009A59C4 /* photoManager.swift in Sources */,
 				BE6F29DF1E94C9BD009A59C4 /* SecondViewController.swift in Sources */,
 				BE6F29DB1E94BE8E009A59C4 /* Store.swift in Sources */,
+				BEE9CF441E9D4D5600E36186 /* SecondInfoViewController.swift in Sources */,
 				BE6F29C41E94BBBB009A59C4 /* ViewController.swift in Sources */,
 				BE7A22961E9732A300EBF36A /* ThirdViewController.swift in Sources */,
+				BEE9CF461E9D589400E36186 /* ThirdInfoViewController.swift in Sources */,
+				BEE9CF421E9D38CA00E36186 /* FirstInfoViewController.swift in Sources */,
+				BEE9CF3D1E9D2A7900E36186 /* loadStoreViewController.swift in Sources */,
 				BEFA14D71E9B7005007AEEDC /* AddressClassficiationViewController.swift in Sources */,
 				BE6F29E21E94D67A009A59C4 /* StoreCategory.swift in Sources */,
 				BE6F29C21E94BBBB009A59C4 /* AppDelegate.swift in Sources */,

@@ -93,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DKImagePickerController/DKImagePickerController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Eureka/Eureka.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -100,6 +101,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DKImagePickerController/DKImagePickerController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Eureka/Eureka.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

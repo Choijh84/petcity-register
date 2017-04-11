@@ -7,17 +7,8 @@ PODS:
   - DKImagePickerController/Camera (3.5.1)
   - DKImagePickerController/ImageManager (3.5.1)
   - Eureka (2.0.1)
-  - GoogleMaps (2.2.0):
-    - GoogleMaps/Maps (= 2.2.0)
-  - GoogleMaps/Base (2.2.0)
-  - GoogleMaps/Maps (2.2.0):
-    - GoogleMaps/Base
-  - GooglePlacePicker (2.2.0):
-    - GoogleMaps (= 2.2.0)
-    - GooglePlaces (= 2.2.0)
-  - GooglePlaces (2.2.0):
-    - GoogleMaps/Base (= 2.2.0)
   - IQKeyboardManagerSwift (4.0.8)
+  - Kingfisher (3.6.1)
   - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
@@ -25,10 +16,8 @@ DEPENDENCIES:
   - Backendless
   - DKImagePickerController
   - Eureka (~> 2.0)
-  - GoogleMaps
-  - GooglePlacePicker
-  - GooglePlaces
   - IQKeyboardManagerSwift
+  - Kingfisher (~> 3.0)
   - SCLAlertView
 
 SPEC CHECKSUMS:
@@ -36,12 +25,10 @@ SPEC CHECKSUMS:
   Backendless: fec9baf045ea22f05016e1b7e8c3f5e96e5a0fc4
   DKImagePickerController: 8db7e76a88a7a66a893ba30e935cc4c9bb7ed335
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
-  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
-  GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
-  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  Kingfisher: 2f31cb75f3e98d3d4c406cbdcd9b263e956cfa67
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: 5bb0a5c6c45dbdec267edbc45ea747239f0b8707
+PODFILE CHECKSUM: 06cd3218668e6638c81312a86390d0aee42b8630
 
 COCOAPODS: 1.2.0
