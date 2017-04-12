@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6CBB7BDAC2BF767BAF093514 /* Pods_petCityRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E92F68A93A2B2A577A0A5D /* Pods_petCityRegister.framework */; };
+		BE27821C1E9E119F006181AF /* FourthInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */; };
 		BE6F29C21E94BBBB009A59C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */; };
 		BE6F29C41E94BBBB009A59C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29C31E94BBBB009A59C4 /* ViewController.swift */; };
 		BE6F29C71E94BBBB009A59C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6F29C51E94BBBB009A59C4 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		23DCDF6D1EACAFDAE3EE1B09 /* Pods-petCityRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petCityRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-petCityRegister/Pods-petCityRegister.debug.xcconfig"; sourceTree = "<group>"; };
 		A7E92F68A93A2B2A577A0A5D /* Pods_petCityRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_petCityRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthInfoViewController.swift; sourceTree = "<group>"; };
 		BE6F29BE1E94BBBB009A59C4 /* petCityRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petCityRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE6F29C31E94BBBB009A59C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BE2782191E9DF5FC006181AF /* NewRegister */ = {
+			isa = PBXGroup;
+			children = (
+				BE6F29C31E94BBBB009A59C4 /* ViewController.swift */,
+				BE6F29DE1E94C9BD009A59C4 /* SecondViewController.swift */,
+				BE7A22951E9732A300EBF36A /* ThirdViewController.swift */,
+			);
+			name = NewRegister;
+			sourceTree = "<group>";
+		};
+		BE27821A1E9DF614006181AF /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BE6F29D61E94BD30009A59C4 /* petCityRegister-Bridging-Header.h */,
+				BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */,
+				BEFA14D61E9B7005007AEEDC /* AddressClassficiationViewController.swift */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		BE6F29B51E94BBBB009A59C4 = {
 			isa = PBXGroup;
 			children = (
@@ -93,19 +115,15 @@
 		BE6F29C01E94BBBB009A59C4 /* petCityRegister */ = {
 			isa = PBXGroup;
 			children = (
+				BE2782191E9DF5FC006181AF /* NewRegister */,
 				BEE9CF3E1E9D2C3F00E36186 /* LoadStore */,
 				BE6F29E01E94D670009A59C4 /* Object */,
-				BE6F29D61E94BD30009A59C4 /* petCityRegister-Bridging-Header.h */,
-				BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */,
-				BE6F29C31E94BBBB009A59C4 /* ViewController.swift */,
-				BE6F29DE1E94C9BD009A59C4 /* SecondViewController.swift */,
-				BE7A22951E9732A300EBF36A /* ThirdViewController.swift */,
-				BEFA14D61E9B7005007AEEDC /* AddressClassficiationViewController.swift */,
 				BE6F29C51E94BBBB009A59C4 /* Main.storyboard */,
 				BE6F29C81E94BBBB009A59C4 /* Assets.xcassets */,
 				BE6F29CA1E94BBBB009A59C4 /* LaunchScreen.storyboard */,
 				BE6F29CD1E94BBBB009A59C4 /* Info.plist */,
 				BE6F29E31E9566E7009A59C4 /* photoManager.swift */,
+				BE27821A1E9DF614006181AF /* SupportingFiles */,
 			);
 			path = petCityRegister;
 			sourceTree = "<group>";
@@ -127,6 +145,7 @@
 				BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */,
 				BEE9CF431E9D4D5600E36186 /* SecondInfoViewController.swift */,
 				BEE9CF451E9D589400E36186 /* ThirdInfoViewController.swift */,
+				BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */,
 			);
 			name = LoadStore;
 			sourceTree = "<group>";
@@ -264,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE27821C1E9E119F006181AF /* FourthInfoViewController.swift in Sources */,
 				BEE9CF401E9D303200E36186 /* showResultViewController.swift in Sources */,
 				BE6F29E41E9566E7009A59C4 /* photoManager.swift in Sources */,
 				BE6F29DF1E94C9BD009A59C4 /* SecondViewController.swift in Sources */,

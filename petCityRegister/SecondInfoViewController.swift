@@ -37,8 +37,24 @@ class SecondInfoViewController: UIViewController {
     let clientId = "TuWS2kCodIxD9zPok6F2"
     let clientSecret = "BwIGo_xV7u"
     
+    // 변경된 것으로 저장할 것인지 확인하고 액션 필요
     @IBAction func confirmNext(_ sender: Any) {
-        performSegue(withIdentifier: "showPhoto", sender: nil)
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alertView = SCLAlertView(appearance: appearance)
+        alertView.addButton("변경") {
+            // 지오포인트 변경
+            self.changeGeoPointAsync()
+        }
+        alertView.addButton("다음", action: {
+            self.performSegue(withIdentifier: "showPhoto", sender: nil)
+        })
+        alertView.addButton("취소") {
+            // self.navigationController?.popToRootViewController(animated: true)
+        }
+        alertView.showInfo("정보를 변경하시겠습니까?", subTitle: "다음은 변경 없이 다음 화면으로")
     }
     
     override func viewDidLoad() {
@@ -57,14 +73,55 @@ class SecondInfoViewController: UIViewController {
         // 새롭게 입력한 주소는 무조건 있음, 없으면 미리 한 번 걸러냄
         if let address = selectedStore.address {
             changedAddressLabel.text = address
-        }
-        naverMapCall { (success, error) in
-            if success {
-                self.changedLongitudeLabel.text = String(self.newLongitude)
-                self.changedLatitudeLabel.text = String(self.newLatitude)
-            } else {
-                print("There is an error to call Naver Map API: \(String(describing: error))")
+            self.naverMapCall { (success, error) in
+                if success {
+                    self.changedLongitudeLabel.text = String(self.newLongitude)
+                    self.changedLatitudeLabel.text = String(self.newLatitude)
+                } else {
+                    print("There is an error to call Naver Map API: \(String(describing: error))")
+                }
             }
+        } else {
+            self.changedAddressLabel.text = "변경 없음"
+            self.changedLongitudeLabel.text = "변경 없음"
+            self.changedLatitudeLabel.text = "변경 없음"    
+        }
+    }
+    
+    // 지오포인트 저장 함수
+    func changeGeoPointAsync() {
+        let name = selectedStore?.name
+        let oldGeopoint = selectedStore.location
+        
+        let newGeopoint = GeoPoint.geoPoint(
+            GEO_POINT(latitude: newLatitude, longitude: newLongitude),
+            categories: nil, metadata: ["name": name!]
+            ) as! GeoPoint
+        
+        Backendless.sharedInstance().geoService.save(newGeopoint, response: { (point) in
+            print("ASYNC: geo point saved. object ID - \(String(describing: point?.objectId))")
+            
+            // 여기에서 store와 지오포인트 설정해주면 됨
+            let dataStore = Backendless.sharedInstance().persistenceService.of(Store.ofClass())
+            self.selectedStore?.location = point
+            dataStore?.save(self.selectedStore, response: { (response) in
+                print("geo point has linked with store")
+            }, error: { (Fault) in
+                print("There is a error to link geopoint: \(String(describing: Fault?.description))")
+            })
+            SCLAlertView().showSuccess("지오 변경", subTitle: "변경되었습니다")
+            // 뷰 넘기기
+            self.performSegue(withIdentifier: "showPhoto", sender: nil)
+            
+            // 기존 지오포인트 삭제
+            Backendless.sharedInstance().geoService.remove(oldGeopoint, response: { (response) in
+                print("기존 지오 삭제")
+            }, error: { (Fault) in
+                print("There is a error to delete geopoint: \(String(describing: Fault?.description))")
+            })
+            
+        }) { (Fault) in
+            print("There is a error to save geopoint: \(String(describing: Fault?.description))")
         }
     }
 

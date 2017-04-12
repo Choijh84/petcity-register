@@ -48,10 +48,13 @@ class FirstInfoViewController: FormViewController {
                     }
                 })
             }
+            alertView.addButton("다음", action: { 
+                self.performSegue(withIdentifier: "SecondCheck", sender: nil)
+            })
             alertView.addButton("취소") {
-                self.navigationController?.popToRootViewController(animated: true)
+                // self.navigationController?.popToRootViewController(animated: true)
             }
-            alertView.showInfo("정보를 변경하시겠습니까?", subTitle: "취소하면 초기화면으로 돌아갑니다")
+            alertView.showInfo("정보를 변경하시겠습니까?", subTitle: "다음은 변경 없이 다음 화면으로")
         }
     }
     

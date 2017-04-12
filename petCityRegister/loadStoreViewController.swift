@@ -18,6 +18,9 @@ class loadStoreViewController: UIViewController {
     @IBOutlet weak var loadButton: UIButton!
     
     @IBAction func tapShowResult(_ sender: Any) {
+        
+        inputField.resignFirstResponder()
+        
         let dataStore = Backendless.sharedInstance().data.of(Store.ofClass())
         if let inputText = inputField.text {
             // 숫자인지 이름인지 체크
