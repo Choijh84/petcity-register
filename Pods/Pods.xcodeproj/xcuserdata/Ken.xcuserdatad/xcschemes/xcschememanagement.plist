@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AZSClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +47,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<key>22AAD64257C9B093573F01CAC4A82BE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>589BC12D6324401452C0C42F0018AD55</key>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BB245BDE99BF28509A4241BC53BD0E8</key>
+		<key>67DB261888D5154BD77ECD26A551BEF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>D29ECE69EF439D1FF5B5E9EB40FDFFE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E060834FF138CAB62F513485F1F47F56</key>
 		<dict>
 			<key>primary</key>
 			<true/>

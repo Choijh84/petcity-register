@@ -19,6 +19,7 @@
 		BE6F29E21E94D67A009A59C4 /* StoreCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29E11E94D67A009A59C4 /* StoreCategory.swift */; };
 		BE6F29E41E9566E7009A59C4 /* photoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29E31E9566E7009A59C4 /* photoManager.swift */; };
 		BE7A22961E9732A300EBF36A /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7A22951E9732A300EBF36A /* ThirdViewController.swift */; };
+		BED5474F1EA28D4200D6A2F6 /* FourthInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED5474E1EA28D4200D6A2F6 /* FourthInfoTableViewCell.swift */; };
 		BEE9CF3D1E9D2A7900E36186 /* loadStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF3C1E9D2A7900E36186 /* loadStoreViewController.swift */; };
 		BEE9CF401E9D303200E36186 /* showResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF3F1E9D303200E36186 /* showResultViewController.swift */; };
 		BEE9CF421E9D38CA00E36186 /* FirstInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */; };
@@ -44,6 +45,7 @@
 		BE6F29E11E94D67A009A59C4 /* StoreCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategory.swift; sourceTree = "<group>"; };
 		BE6F29E31E9566E7009A59C4 /* photoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoManager.swift; sourceTree = "<group>"; };
 		BE7A22951E9732A300EBF36A /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		BED5474E1EA28D4200D6A2F6 /* FourthInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthInfoTableViewCell.swift; sourceTree = "<group>"; };
 		BEE9CF3C1E9D2A7900E36186 /* loadStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadStoreViewController.swift; sourceTree = "<group>"; };
 		BEE9CF3F1E9D303200E36186 /* showResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showResultViewController.swift; sourceTree = "<group>"; };
 		BEE9CF411E9D38CA00E36186 /* FirstInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstInfoViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				BEE9CF431E9D4D5600E36186 /* SecondInfoViewController.swift */,
 				BEE9CF451E9D589400E36186 /* ThirdInfoViewController.swift */,
 				BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */,
+				BED5474E1EA28D4200D6A2F6 /* FourthInfoTableViewCell.swift */,
 			);
 			name = LoadStore;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				BEFA14D71E9B7005007AEEDC /* AddressClassficiationViewController.swift in Sources */,
 				BE6F29E21E94D67A009A59C4 /* StoreCategory.swift in Sources */,
 				BE6F29C21E94BBBB009A59C4 /* AppDelegate.swift in Sources */,
+				BED5474F1EA28D4200D6A2F6 /* FourthInfoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +353,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = " $(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -400,6 +405,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = " $(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

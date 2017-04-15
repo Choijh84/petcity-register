@@ -122,6 +122,17 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // 업로드 성공과 실패를 알려줌
     func saveImage(_ image: UIImage) {
+        // Azure에 업로드
+        photoManager().uploadPhoto(selectedFile: image, store: savingStore!) { (success, returnedUrl, error) in
+            if success {
+                SCLAlertView().showSuccess("업로드 완료", subTitle: "사진 저장 완료")
+            } else {
+                SCLAlertView().showError("업로드 에러", subTitle: "확인해주세요: \(String(describing: error))")
+            }
+        }
+        
+        // 백엔드리스에 바로 업로드하고 성공과 실패를 알려줌
+        /**
         photoManager().uploadNewPhoto(selectedFile: image, store: savingStore!) { (success, error) in
             if success {
                 print("Store photo has been updated")
@@ -129,6 +140,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print("I got error on photo: \(String(describing: error))")
             }
         }
+        */
     }
     
     // 지오포인트 저장 함수
@@ -261,26 +273,26 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
 extension UIImage {
     
     /**
-     이미지의 실제크기를 보고 최대 너비 800, 최대 높이 600으로 비율을 계산해서 압축해주는 함수
+     이미지의 실제크기를 보고 최대 너비 640, 최대 높이 600으로 비율을 계산해서 압축해주는 함수, PNG로 변경
      : param: image
      */
     func compressImage(_ image: UIImage) -> UIImage {
         var actualHeight = image.size.height
         var actualWidth = image.size.width
         
-        let data = UIImageJPEGRepresentation(image, 1)
+        let data = UIImagePNGRepresentation(image)
         let imageSize = data?.count
         
         print("This is actual height and width: \(actualHeight) & \(actualWidth)")
         print("size of image in KB: %f , \(imageSize!/1024)")
         
         let maxHeight: CGFloat = 600
-        let maxWidth: CGFloat = 800
+        let maxWidth: CGFloat = 640
         
         var imgRatio = actualWidth/actualHeight
         let maxRatio = maxWidth/maxHeight
         
-        let compressionQuality: CGFloat = 0.9
+        // let compressionQuality: CGFloat = 0.9
         
         if (actualHeight > maxHeight) || (actualWidth > maxWidth) {
             if (imgRatio < maxRatio) {
@@ -304,9 +316,9 @@ extension UIImage {
         UIGraphicsBeginImageContext(rect.size)
         image.draw(in: rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = UIImageJPEGRepresentation(image!, compressionQuality)
+        let imageData = UIImagePNGRepresentation(image!)
         let compressedSize = imageData?.count
-        print("This is compressed height and width: \(maxHeight) & \(maxWidth)")
+        print("This is compressed height and width: \(actualHeight) & \(actualWidth)")
         print("size of compressed image in KB: %f , \(compressedSize!/1024)")
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)!

@@ -4,3 +4,4 @@
 
 #import "Backendless.h"
 #import "BackendlessGeoQuery.h"
+#import <AZSClient/AZSClient.h>

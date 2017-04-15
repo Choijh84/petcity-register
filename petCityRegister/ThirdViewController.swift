@@ -24,7 +24,21 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     // 세이브 버튼 누르면 업로드
     @IBAction func saveImageDB(_ sender: Any) {
-        print("This is imageArray number: \(imageArray.count)")
+        print("사진 개수: \(imageArray.count)")
+        
+        /// Azure에 업로드
+        photoManager().uploadPhotos(selectedFiles: imageArray, store: savingStore!) { (success, returnedURL, error) in
+            if success {
+                print("This is imagearray url: \(String(describing: returnedURL))")
+                SCLAlertView().showSuccess("업로드 완료", subTitle: "앱에서 확인해보세요")
+                // 처음으로 돌아가기
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                print("There is an error to save photos: \(String(describing: error?.description))")
+            }
+        }
+        
+        /**
         photoManager().uploadNewPhotos(selectedFiles: imageArray, store: savingStore!) { (success, returnedURL, error) in
             if success {
                 print("This is imagearray url: \(returnedURL)")
@@ -35,6 +49,7 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 print("There is an error to save photos: \(String(describing: error?.description))")
             }
         }
+         */
     }
     
     // 사진 고르기

@@ -92,7 +92,6 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -130,6 +129,38 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
     
     // 업로드 성공과 실패를 알려줌
     func saveImage(_ image: UIImage) {
+        // Azure에 업로드
+        photoManager().uploadPhoto(selectedFile: image, store: selectedStore) { (success, returnedUrl, error) in
+            if error != nil {
+                print("I got error on photo: \(String(describing: error))")
+            } else {
+                print("Store photo has been updated")
+                self.imageUrlLabel.text = returnedUrl
+                SCLAlertView().showSuccess("사진 변경", subTitle: "완료되었습니다")
+                
+                let appearance = SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                )
+                let alertView = SCLAlertView(appearance: appearance)
+                alertView.addButton("사진 삭제") {
+                    
+                    if let oldimageurl = self.oldImageUrl {
+                        print(oldimageurl)
+                        self.deleteFile(oldimageurl)
+                        self.performSegue(withIdentifier: "showMultiPhoto", sender: nil)
+                    } else {
+                        SCLAlertView().showSuccess("기존 사진 에러", subTitle: "기존 사진이 없습니다")
+                    }
+                    
+                }
+                alertView.addButton("사진 유지", action: {
+                    self.performSegue(withIdentifier: "showMultiPhoto", sender: nil)
+                })
+                alertView.showInfo("기존 사진을 삭제하겠습니까?", subTitle: "")
+            }
+        }
+        
+        /**
         photoManager().uploadNewPhoto(selectedFile: image, store: selectedStore!) { (success, error) in
             if success {
                 print("Store photo has been updated")
@@ -159,20 +190,39 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
                 print("I got error on photo: \(String(describing: error))")
             }
         }
+        */
     }
     
     // 기존 사진 삭제
     func deleteFile(_ imageUrl: String) {
+        // 백엔드리스 파일임을 검사
         let isBackendless = imageUrl.hasPrefix("https://api.backendless.com/6E11C098-5961-1872-FF85-2B0BD0AA0600/v1/files")
         
+        // 백엔드리스 파일이면 삭제
         if isBackendless {
             Backendless.sharedInstance().fileService.remove(imageUrl, response: { (response) in
                 SCLAlertView().showSuccess("기존 사진 삭제", subTitle: "완료되었습니다")
+                
             }, error: { (Fault) in
-                print("There is an error to delete the image file: \(String(describing: Fault?.description))")
+                print("There is an error to delete the image file in Backendless: \(String(describing: Fault?.description))")
             })
         } else {
-            SCLAlertView().showError("이미지 에러", subTitle: "외부링크 이미지입니다")
+            
+            if imageUrl.hasPrefix("https://petcity.blob.core.windows.net/store-images") {
+                // Blob의 이름은 앞의 Container이름 제외하고
+                let selectedUrl = imageUrl.replacingOccurrences(of: "https://petcity.blob.core.windows.net/store-images/", with: "")
+                // 제외한 이름을 가지고 삭제 요청
+                photoManager().deleteFile(selectedUrl: selectedUrl, completionblock: { (success, error) in
+                    if success {
+                        SCLAlertView().showSuccess("삭제 완료", subTitle: "삭제되었습니다")
+                    } else {
+                        print("There is an error to delete the image file in Azure: \(String(describing: error?.description))")
+                    }
+                })
+            } else {
+                // 아니면 외부링크임을 알림
+                SCLAlertView().showError("이미지 에러", subTitle: "외부링크 이미지입니다")
+            }
         }
     
     }
