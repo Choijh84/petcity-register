@@ -63,10 +63,14 @@ class photoManager: NSObject {
         let blobClient : AZSCloudBlobClient = account.getBlobClient()
         let blobContainer : AZSCloudBlobContainer = blobClient.containerReference(fromName: containerName)
         
-        let blockBlob : AZSCloudBlockBlob = blobContainer.blockBlobReference(fromName: selectedUrl)
+        let fileName = selectedUrl.replacingOccurrences(of: "https://petcity.blob.core.windows.net/store-images/", with: "")
+        print("지울 파일 경로: \(selectedUrl)")
+        print("지울 파일 이름: \(fileName)")
+        let blockBlob : AZSCloudBlockBlob = blobContainer.blockBlobReference(fromName: fileName)
+        
         blockBlob.delete { (error) in
             if error != nil {
-                print("Error in delete blob: \(error?.localizedDescription)")
+                print("Error in delete blob: \(String(describing: error?.localizedDescription))")
             } else {
                 print("Delete success")
             }
@@ -112,6 +116,43 @@ class photoManager: NSObject {
             }
         }
     }
+    
+    
+    /**
+    Azure Storage에 사진 1개를 업로드하고 그 URL을 completionBlock으로 리턴
+    */
+    func uploadPhoto(selectedFile: UIImage, completionBlock: @escaping (_ success: Bool, _ fileURL: String?, _ errorMessage: String? ) -> ()) {
+        let account = try! AZSCloudStorageAccount(fromConnectionString: connectionString)
+        
+        let blobClient : AZSCloudBlobClient = account.getBlobClient()
+        let blobContainer : AZSCloudBlobContainer = blobClient.containerReference(fromName: containerName)
+        blobContainer.createContainerIfNotExists(with: .blob, requestOptions: nil, operationContext: nil) { (error, success) in
+            if error != nil {
+                print("There is an error in creating container")
+                completionBlock(false, nil, error?.localizedDescription)
+            } else {
+                // 여기서 이름 정하고
+                let fileName = String(format: "uploaded_%0.0f.png", Date().timeIntervalSince1970)
+                let blob : AZSCloudBlockBlob = blobContainer.blockBlobReference(fromName: fileName)
+                // 이미지 데이터를 생성
+                let imageData = UIImagePNGRepresentation(selectedFile.compressImage(selectedFile))
+                
+                // 블롭에 데이터를 업로드, 파일 이름은 우리가 정한대로 들어간다
+                blob.upload(from: imageData!, completionHandler: { (error) in
+                    if error != nil {
+                        print("Upload Error: \(error.localizedDescription)")
+                        completionBlock(false, nil, error.localizedDescription)
+                    } else {
+                        print("Upload Success to Azure")
+                        let url = "https://petcity.blob.core.windows.net/store-images/\(fileName)"
+                        completionBlock(true, url, nil)
+                    }
+                })
+            }
+        }
+    }
+    
+    
     
     /**
      Azure Storage에 사진 복수를 업로드하고 지정된 Store의 사진 배열로 추가하는 함수

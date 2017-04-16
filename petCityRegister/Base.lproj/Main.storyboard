@@ -264,7 +264,7 @@
                         <outlet property="oldAddressLabel" destination="g9y-Ok-WBa" id="OKm-3A-AWo"/>
                         <outlet property="oldLatitudeLabel" destination="ldo-ZR-wyK" id="OrP-BO-IsG"/>
                         <outlet property="oldLongitudeLabel" destination="IAK-QW-tQS" id="s0y-zz-rcd"/>
-                        <segue destination="Dby-Fh-CfU" kind="push" identifier="showPhoto" id="vdz-Lp-6wV"/>
+                        <segue destination="Dby-Fh-CfU" kind="show" identifier="showPhoto" id="vdz-Lp-6wV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgw-OV-KU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -381,14 +381,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="n2G-0s-q4S">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="edit" id="kXS-fc-1aD">
+                            <barButtonItem title="편집" id="kXS-fc-1aD">
                                 <connections>
                                     <action selector="editTableView:" destination="Tvd-b2-Vny" id="u7k-PO-TGP"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="add" id="w7M-AU-vnn">
+                            <barButtonItem title="추가" id="w7M-AU-vnn">
                                 <connections>
                                     <action selector="addImage:" destination="Tvd-b2-Vny" id="98h-Wi-R2K"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="완료" id="JRM-LY-6xZ">
+                                <connections>
+                                    <action selector="doneAction:" destination="Tvd-b2-Vny" id="mTx-lf-djv"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -537,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUo-mU-kIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="977" y="125"/>
+            <point key="canvasLocation" x="978" y="322"/>
         </scene>
         <!--지오 확인 및 대표사진 올리기-->
         <scene sceneID="Jbx-jF-KdI">
