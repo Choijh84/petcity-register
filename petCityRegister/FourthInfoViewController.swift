@@ -161,11 +161,6 @@ extension FourthInfoViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.changeImageButton.tag = (indexPath.row*10) + 02
         cell.changeDBButton.tag = (indexPath.row*10) + 03
         
-        // 이미 애줘에 저장되어 있으면 버튼이 보이지 않음
-        if imageURL.hasPrefix("https://petcity.blob.core.windows.net/store-images/") {
-            cell.changeDBButton.isHidden = true
-        }
-        
         return cell
     }
     
@@ -386,8 +381,9 @@ extension FourthInfoViewController: UITableViewDelegate, UITableViewDataSource, 
                         
                         // 백엔드리스에서 파일 삭제
                         print("지울 파일: \(selectedUrl)")
+                        let fileName = selectedUrl.replacingOccurrences(of: "https://api.backendless.com/6E11C098-5961-1872-FF85-2B0BD0AA0600/v1/files/", with: "")
                         DispatchQueue.main.sync(execute: {
-                            Backendless.sharedInstance().fileService.remove(selectedUrl, response: { (response) in
+                            Backendless.sharedInstance().fileService.remove(fileName, response: { (response) in
                                 print("백엔드에서 삭제 완료")
                             }, error: { (Fault) in
                                 print("Error on delete on Backendless: \(String(describing: Fault?.description))")

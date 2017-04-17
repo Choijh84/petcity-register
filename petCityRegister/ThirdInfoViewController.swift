@@ -51,6 +51,12 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
         alertView.showInfo("정보를 변경하시겠습니까?", subTitle: "다음은 변경 없이 다음 화면으로")
     }
     
+    // 데이터베이스 전환
+    @IBAction func databaseConversion(_ sender: Any) {
+        self.changeDatabase()
+    }
+    
+    
     // 사진 변경
     @IBAction func photoChange(_ sender: Any) {
         
@@ -224,7 +230,51 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
                 SCLAlertView().showError("이미지 에러", subTitle: "외부링크 이미지입니다")
             }
         }
+    }
     
+    /// 이미지 DB 변경 함수 : 백엔드에서 애줘로 변경해줌
+    /// 이미지를 받아서 애줘에 업로드하여 URL을 변경하고, 백엔드리스에서는 삭제한다
+    func changeDatabase() {
+        print("디비 변경")
+        let selectedUrl = selectedStore.imageURL!
+        
+        if selectedUrl.hasPrefix("https://api.backendless.com/6E11C098-5961-1872-FF85-2B0BD0AA0600/v1/files") {
+            
+            SCLAlertView().showNotice("데이터베이스 변경", subTitle: "From Backendless to Azure")
+            
+            let imageView = UIImageView()
+            let url = URL(string: selectedUrl)
+            // 이미지 다운 받으면 리턴 받아서
+            imageView.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, returnedURL) in
+                if error == nil {
+                    // 이미지 한 번 변환해주기
+                    let convertedImage = image?.compressImage(image!)
+                    // Azure에 업로드
+                    photoManager().uploadPhoto(selectedFile: convertedImage!, completionBlock: { (success, fileURL, error) in
+                        // 대표 이미지 URL 변경
+                        self.selectedStore.imageURL = fileURL!
+                        // 백엔드에 저장
+                        let dataStore = Backendless.sharedInstance().data.of(Store.ofClass())
+                        _ = dataStore?.save(self.selectedStore)
+                        // URL 변경
+                        self.imageUrlLabel.text = fileURL!
+                        
+                        // 백엔드리스에서 파일 삭제
+                        print("지울 파일: \(selectedUrl)")
+                        let fileName = selectedUrl.replacingOccurrences(of: "https://api.backendless.com/6E11C098-5961-1872-FF85-2B0BD0AA0600/v1/files/", with: "")
+                        DispatchQueue.main.sync(execute: {
+                            Backendless.sharedInstance().fileService.remove(fileName, response: { (response) in
+                                print("백엔드에서 삭제 완료")
+                            }, error: { (Fault) in
+                                print("Error on delete on Backendless: \(String(describing: Fault?.description))")
+                            })
+                        })
+                    })
+                }
+            })
+        } else {
+            SCLAlertView().showNotice("이미지 위치 확인", subTitle: "Backendless 파일이 아닙니다")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
