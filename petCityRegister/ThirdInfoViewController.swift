@@ -213,9 +213,9 @@ class ThirdInfoViewController: UIViewController, UIImagePickerControllerDelegate
                 print("There is an error to delete the image file in Backendless: \(String(describing: Fault?.description))")
             })
         } else {
-            
+            // Azure 파일인 경우
             if imageUrl.hasPrefix("https://petcity.blob.core.windows.net/store-images") {
-                // Blob의 이름은 앞의 Container이름 제외하고
+                // Blob의 이름은 앞의 Container 이름 제외하고
                 let selectedUrl = imageUrl.replacingOccurrences(of: "https://petcity.blob.core.windows.net/store-images/", with: "")
                 // 제외한 이름을 가지고 삭제 요청
                 photoManager().deleteFile(selectedUrl: selectedUrl, completionblock: { (success, error) in

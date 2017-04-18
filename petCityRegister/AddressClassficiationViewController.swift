@@ -12,7 +12,7 @@ import SCLAlertView
 
 class AddressClassficiationViewController: UIViewController {
 
-    var addressArray = ["서울특별시 서초구 신반포로 194", "경기도 안양시 동안구 시민대로 180 롯데백화점평촌점", "경기도 안산시 단원구 고잔1길 12 롯데백화점안산점", "서울특별시 관악구 봉천로 209 롯데백화점", "서울특별시 강남구 도곡로 401 롯데백화점", "서울특별시 강북구 도봉로 62 롯데백화점미아점", "대구광역시 달서구 월배로 232 롯데백화점상인점", "광주광역시 동구 독립로 268 롯데백화점광주점", "서울특별시 중구 남대문로 81 롯데백화점", "서울특별시 동대문구 왕산로 205 청량리역"]
+    var addressArray = ["서울시 강남구 도곡로 546-6"]
     
     // 네이버 지도 API
     let clientId = "TuWS2kCodIxD9zPok6F2"
@@ -55,12 +55,12 @@ class AddressClassficiationViewController: UIViewController {
             do {
                 if let data = response.data,
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String, AnyObject> {
-                    // print(json)
+                    print(json)
                     if let result = json["result"] as? [String: AnyObject] {
                         if let jsonResult = result["items"] as? Array<AnyObject> {
                             // print("this is count: \(jsonResult.count)")
                             // for result in jsonResult {
-                            //print("this is result: \(result)")
+                            print("this is result: \(result)")
                             // }
                             if let jsonFirstResult = jsonResult[0] as? [String: AnyObject] {
                                 //print("this is another Dict: \(jsonFirstResult)")

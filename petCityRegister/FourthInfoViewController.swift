@@ -74,7 +74,11 @@ class FourthInfoViewController: UIViewController, UIImagePickerControllerDelegat
         pickerController = DKImagePickerController()
         
         // Do any additional setup after loading the view.
-        imageArray = (selectedStore.imageArray?.components(separatedBy: ","))!
+        if let imageArray = (selectedStore.imageArray?.components(separatedBy: ",")) {
+            self.imageArray = imageArray
+        } else {
+            SCLAlertView().showWarning("사진 확인", subTitle: "사진이 없습니다")
+        }
         
         tableView.reloadData()
     }

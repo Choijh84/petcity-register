@@ -25,7 +25,7 @@ class ViewController: FormViewController {
     // 저장
     @IBAction func saveStore(_ sender: Any) {
         valueDictionary = form.values(includeHidden: false) as [String: AnyObject]
-        dump(valueDictionary)
+        // dump(valueDictionary)
         
         // 저장하고 다음으로 넘어갈지 
         let appearance = SCLAlertView.SCLAppearance(
@@ -223,10 +223,12 @@ class ViewController: FormViewController {
             
             let serviceCategory = self.valueDictionary["serviceCategory"] as! Set<String>
             let serviceCategoryArray = Array(serviceCategory)
+            print(serviceCategoryArray)
             let myGroup = DispatchGroup()
             var convertedString = ""
             
             for category in serviceCategoryArray {
+                myGroup.enter()
                 
                 // 카테고리로 경우에 따라 어떤 문자열로 변환할 것인지 결정
                 // ["Hospital", "Pet Beauty Shop", "Pet Cafe", "Pet Friendly Cafe", "Pet Friendly Hotel", "Pet Friendly Park", "Pet Friendly Pension", "Pet Friendly Restaurant", "Pet Good Shop", "Pet Hotel", "Pet Shop", "Test", "Another Test"]
@@ -235,33 +237,33 @@ class ViewController: FormViewController {
                 switch category {
                     
                     case "Hospital":
-                        convertedString.append("동물병원")
+                        convertedString.append("동물병원,")
                     case "Pet Beauty Shop":
-                        convertedString.append("펫 미용샵")
+                        convertedString.append("펫 미용샵,")
                     case "Pet Cafe":
-                        convertedString.append("펫카페")
+                        convertedString.append("펫 카페,")
                     case "Pet Friendly Cafe":
-                        convertedString.append("펫 동반 카페")
+                        convertedString.append("펫 동반 카페,")
                     case "Pet Friendly Hotel":
-                        convertedString.append("펫 동반 호텔")
+                        convertedString.append("펫 동반 호텔,")
                     case "Pet Friendly Park":
-                        convertedString.append("펫 동반 공원")
+                        convertedString.append("펫 동반 공원,")
                     case "Pet Friendly Pension":
-                        convertedString.append("펫 동반 펜션")
+                        convertedString.append("펫 동반 펜션,")
                     case "Pet Friendly Restaurant":
-                        convertedString.append("펫 동반 식당")
+                        convertedString.append("펫 동반 식당,")
                     case "Pet Good Shop":
-                        convertedString.append("펫 용품샵")
+                        convertedString.append("펫 용품샵,")
                     case "Pet Hotel":
-                        convertedString.append("펫 호텔")
+                        convertedString.append("펫 호텔,")
                     case "Pet Shop":
-                        convertedString.append("펫 분양샵")
+                        convertedString.append("펫 분양샵,")
                     case "Pet Training":
-                        convertedString.append("펫 분양샵")
+                        convertedString.append("펫 훈련소,")
                     case "Pet Kindergarden":
-                        convertedString.append("펫 유치원")
+                        convertedString.append("펫 유치원,")
                     case "Pet Playground":
-                        convertedString.append("펫 놀이방")
+                        convertedString.append("펫 놀이방,")
                     default:
                         convertedString = "작업 중입니다"
                 }
@@ -270,7 +272,6 @@ class ViewController: FormViewController {
                 let dataStoreCategory = Backendless.sharedInstance().data.of(StoreCategory.ofClass())
                 let dataQuery = BackendlessDataQuery()
                 dataQuery.whereClause = "name = \'\(category)\'"
-                myGroup.enter()
                 
                 dataStoreCategory?.find(dataQuery, response: { (collection) in
                     let storeCategory = collection?.data.first as! StoreCategory
@@ -282,15 +283,17 @@ class ViewController: FormViewController {
                     }, error: { (Fault) in
                         print("Server reporeted an error to update service category: \(String(describing: Fault?.description))")
                     })
-                    
                     myGroup.leave()
                 }, error: { (Fault) in
                     print("Server reporeted an error to get the service category: \(String(describing: Fault?.description))")
                 })
             }
             
+            // For Loop 밖에 myGroup 설정
             myGroup.notify(queue: DispatchQueue.main) {
-                tempStore.serviceCategory = convertedString
+                tempStore.serviceCategory = String(convertedString.characters.dropLast())
+                print("등록된 카테고리: \(String(describing: tempStore.serviceCategory))")
+                _ = self.dataStore?.save(tempStore)
                 completionHandler(true, responseStore, nil)
             }
             

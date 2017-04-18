@@ -63,6 +63,7 @@ class photoManager: NSObject {
         let blobClient : AZSCloudBlobClient = account.getBlobClient()
         let blobContainer : AZSCloudBlobContainer = blobClient.containerReference(fromName: containerName)
         
+        // 컨테이너 이름까지는 필요없음
         let fileName = selectedUrl.replacingOccurrences(of: "https://petcity.blob.core.windows.net/store-images/", with: "")
         print("지울 파일 경로: \(selectedUrl)")
         print("지울 파일 이름: \(fileName)")
@@ -194,7 +195,13 @@ class photoManager: NSObject {
             
             myGroup.notify(queue: DispatchQueue.main, execute: {
                 let finalURL = String(totalFileURL.characters.dropLast())
-                store.imageArray = store.imageArray! + "," + finalURL
+                
+                // 스토어의 이미지 배열이 있는 경우 뒤에 붙임, 없는 경우 finalURL 값을 그대로 입력
+                if let imageArray = store.imageArray {
+                    store.imageArray = imageArray + "," + finalURL
+                } else {
+                    store.imageArray = finalURL
+                }
                 
                 _ = self.dataStore?.save(store)
                 print("Store has been updated")

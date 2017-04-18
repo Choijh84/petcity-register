@@ -24,7 +24,7 @@ class FirstInfoViewController: FormViewController {
     @IBAction func saveChange(_ sender: Any) {
         // form에서 value 형성
         valueDictionary = form.values(includeHidden: false) as [String : AnyObject]
-        dump(valueDictionary)
+        //dump(valueDictionary)
         
         /// 기초 데이터 입력 여부 체크
         /// 필수 입력: 이름, 서브타이틀, 전화번호, 주소 등
@@ -275,33 +275,33 @@ class FirstInfoViewController: FormViewController {
                 switch category {
                     
                 case "Hospital":
-                    convertedString.append("동물병원")
+                    convertedString.append("동물병원,")
                 case "Pet Beauty Shop":
-                    convertedString.append("펫 미용샵")
+                    convertedString.append("펫 미용샵,")
                 case "Pet Cafe":
-                    convertedString.append("펫카페")
+                    convertedString.append("펫 카페,")
                 case "Pet Friendly Cafe":
-                    convertedString.append("펫 동반 카페")
+                    convertedString.append("펫 동반 카페,")
                 case "Pet Friendly Hotel":
-                    convertedString.append("펫 동반 호텔")
+                    convertedString.append("펫 동반 호텔,")
                 case "Pet Friendly Park":
-                    convertedString.append("펫 동반 공원")
+                    convertedString.append("펫 동반 공원,")
                 case "Pet Friendly Pension":
-                    convertedString.append("펫 동반 펜션")
+                    convertedString.append("펫 동반 펜션,")
                 case "Pet Friendly Restaurant":
-                    convertedString.append("펫 동반 식당")
+                    convertedString.append("펫 동반 식당,")
                 case "Pet Good Shop":
-                    convertedString.append("펫 용품샵")
+                    convertedString.append("펫 용품샵,")
                 case "Pet Hotel":
-                    convertedString.append("펫 호텔")
+                    convertedString.append("펫 호텔,")
                 case "Pet Shop":
-                    convertedString.append("펫 분양샵")
+                    convertedString.append("펫 분양샵,")
                 case "Pet Training":
-                    convertedString.append("펫 분양샵")
+                    convertedString.append("펫 훈련소,")
                 case "Pet Kindergarden":
-                    convertedString.append("펫 유치원")
+                    convertedString.append("펫 유치원,")
                 case "Pet Playground":
-                    convertedString.append("펫 놀이방")
+                    convertedString.append("펫 놀이방,")
                     
                 default:
                     convertedString = "작업 중입니다"
@@ -329,10 +329,18 @@ class FirstInfoViewController: FormViewController {
                     print("Server reporeted an error to get the service category: \(String(describing: Fault?.description))")
                 })
             }
-            
+            // 여기서 문자열 변환해서 다시 저장
             myGroup.notify(queue: DispatchQueue.main) {
-                self.selectedStore.serviceCategory = convertedString
-                completionHandler(true, responseStore, nil)
+                self.selectedStore.serviceCategory = String(convertedString.characters.dropLast())
+                print("등록된 카테고리: \(String(describing: self.selectedStore.serviceCategory))")
+                
+                dataStore?.save(self.selectedStore, response: { (response) in
+                    completionHandler(true, responseStore, nil)
+                    print("저장 완료")
+                }, error: { (Fault) in
+                    print("에러")
+                })
+                
             }
             
         }, error: { (Fault) in
