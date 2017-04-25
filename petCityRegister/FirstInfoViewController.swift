@@ -275,34 +275,33 @@ class FirstInfoViewController: FormViewController {
                 switch category {
                     
                 case "Hospital":
-                    convertedString.append("동물병원,")
+                    convertedString.append("동물병원, ")
                 case "Pet Beauty Shop":
-                    convertedString.append("펫 미용샵,")
+                    convertedString.append("미용샵, ")
                 case "Pet Cafe":
-                    convertedString.append("펫 카페,")
+                    convertedString.append("카페, ")
                 case "Pet Friendly Cafe":
-                    convertedString.append("펫 동반 카페,")
+                    convertedString.append("동반 카페, ")
                 case "Pet Friendly Hotel":
-                    convertedString.append("펫 동반 호텔,")
+                    convertedString.append("동반 호텔, ")
                 case "Pet Friendly Park":
-                    convertedString.append("펫 동반 공원,")
+                    convertedString.append("동반 공원, ")
                 case "Pet Friendly Pension":
-                    convertedString.append("펫 동반 펜션,")
+                    convertedString.append("동반 펜션, ")
                 case "Pet Friendly Restaurant":
-                    convertedString.append("펫 동반 식당,")
+                    convertedString.append("동반 식당, ")
                 case "Pet Good Shop":
-                    convertedString.append("펫 용품샵,")
+                    convertedString.append("용품샵, ")
                 case "Pet Hotel":
-                    convertedString.append("펫 호텔,")
+                    convertedString.append("호텔, ")
                 case "Pet Shop":
-                    convertedString.append("펫 분양샵,")
+                    convertedString.append("분양샵, ")
                 case "Pet Training":
-                    convertedString.append("펫 훈련소,")
+                    convertedString.append("훈련소, ")
                 case "Pet Kindergarden":
-                    convertedString.append("펫 유치원,")
+                    convertedString.append("유치원, ")
                 case "Pet Playground":
-                    convertedString.append("펫 놀이방,")
-                    
+                    convertedString.append("놀이방, ")
                 default:
                     convertedString = "작업 중입니다"
                 }
@@ -331,8 +330,16 @@ class FirstInfoViewController: FormViewController {
             }
             // 여기서 문자열 변환해서 다시 저장
             myGroup.notify(queue: DispatchQueue.main) {
-                self.selectedStore.serviceCategory = String(convertedString.characters.dropLast())
-                print("등록된 카테고리: \(String(describing: self.selectedStore.serviceCategory))")
+                // print("이게 원래 문자열: \(convertedString)")
+                // 뒤의 여백 Trim
+                let tempString = convertedString.trimmingCharacters(in: .whitespaces)
+                // print("뒤의 공백 제거 이후: \(tempString)")
+                // 마지막 글자 drop (,)
+                let lastString = String(tempString.characters.dropLast(1))
+                // print("뒤의 글자 drop: \(lastString)")
+                
+                self.selectedStore.serviceCategory = lastString
+                // print("등록된 카테고리: \(lastString)")
                 
                 dataStore?.save(self.selectedStore, response: { (response) in
                     completionHandler(true, responseStore, nil)

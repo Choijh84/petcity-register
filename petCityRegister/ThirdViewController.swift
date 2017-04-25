@@ -20,11 +20,18 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var assets: [DKAsset]?
     var imageArray = [UIImage]()
     
+    /// 오버레이 뷰
+    lazy var overlayView: OverlayView = {
+        let overlayView = OverlayView()
+        return overlayView
+    }()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // 세이브 버튼 누르면 업로드
     @IBAction func saveImageDB(_ sender: Any) {
         print("사진 개수: \(imageArray.count)")
+        
         
         /// Azure에 업로드
         photoManager().uploadPhotos(selectedFiles: imageArray, store: savingStore!) { (success, returnedURL, error) in

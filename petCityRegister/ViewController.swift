@@ -237,33 +237,33 @@ class ViewController: FormViewController {
                 switch category {
                     
                     case "Hospital":
-                        convertedString.append("동물병원,")
+                        convertedString.append("동물병원, ")
                     case "Pet Beauty Shop":
-                        convertedString.append("펫 미용샵,")
+                        convertedString.append("미용샵, ")
                     case "Pet Cafe":
-                        convertedString.append("펫 카페,")
+                        convertedString.append("카페, ")
                     case "Pet Friendly Cafe":
-                        convertedString.append("펫 동반 카페,")
+                        convertedString.append("동반 카페, ")
                     case "Pet Friendly Hotel":
-                        convertedString.append("펫 동반 호텔,")
+                        convertedString.append("동반 호텔, ")
                     case "Pet Friendly Park":
-                        convertedString.append("펫 동반 공원,")
+                        convertedString.append("동반 공원, ")
                     case "Pet Friendly Pension":
-                        convertedString.append("펫 동반 펜션,")
+                        convertedString.append("동반 펜션, ")
                     case "Pet Friendly Restaurant":
-                        convertedString.append("펫 동반 식당,")
+                        convertedString.append("동반 식당, ")
                     case "Pet Good Shop":
-                        convertedString.append("펫 용품샵,")
+                        convertedString.append("용품샵, ")
                     case "Pet Hotel":
-                        convertedString.append("펫 호텔,")
+                        convertedString.append("호텔, ")
                     case "Pet Shop":
-                        convertedString.append("펫 분양샵,")
+                        convertedString.append("분양샵, ")
                     case "Pet Training":
-                        convertedString.append("펫 훈련소,")
+                        convertedString.append("훈련소, ")
                     case "Pet Kindergarden":
-                        convertedString.append("펫 유치원,")
+                        convertedString.append("유치원, ")
                     case "Pet Playground":
-                        convertedString.append("펫 놀이방,")
+                        convertedString.append("놀이방, ")
                     default:
                         convertedString = "작업 중입니다"
                 }
@@ -275,6 +275,8 @@ class ViewController: FormViewController {
                 
                 dataStoreCategory?.find(dataQuery, response: { (collection) in
                     let storeCategory = collection?.data.first as! StoreCategory
+                    
+                    // 스토어 카테고리 배열에 샵을 추가해주고 저장
                     storeCategory.stores.append(responseStore)
                     print("objectId: \(String(describing: storeCategory.objectId))")
                     
@@ -291,9 +293,17 @@ class ViewController: FormViewController {
             
             // For Loop 밖에 myGroup 설정
             myGroup.notify(queue: DispatchQueue.main) {
-                tempStore.serviceCategory = String(convertedString.characters.dropLast())
-                print("등록된 카테고리: \(String(describing: tempStore.serviceCategory))")
-                _ = self.dataStore?.save(tempStore)
+                
+                // 뒤의 여백 Trim
+                let tempString = convertedString.trimmingCharacters(in: .whitespaces)
+                
+                // 마지막 글자 drop (,)
+                let lastString = String(tempString.characters.dropLast(1))
+                
+                // 여기서 아까 저장된 객첼르 받았던 responseStore를 받아서 변경
+                responseStore.serviceCategory = lastString
+                
+                _ = self.dataStore?.save(responseStore)
                 completionHandler(true, responseStore, nil)
             }
             

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6CBB7BDAC2BF767BAF093514 /* Pods_petCityRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E92F68A93A2B2A577A0A5D /* Pods_petCityRegister.framework */; };
+		BE151D7D1EA74D7C00AE1D0B /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE151D7B1EA74D7C00AE1D0B /* OverlayView.swift */; };
+		BE151D7E1EA74D7C00AE1D0B /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE151D7C1EA74D7C00AE1D0B /* OverlayView.xib */; };
 		BE27821C1E9E119F006181AF /* FourthInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */; };
 		BE6F29C21E94BBBB009A59C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */; };
 		BE6F29C41E94BBBB009A59C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F29C31E94BBBB009A59C4 /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		23DCDF6D1EACAFDAE3EE1B09 /* Pods-petCityRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petCityRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-petCityRegister/Pods-petCityRegister.debug.xcconfig"; sourceTree = "<group>"; };
 		A7E92F68A93A2B2A577A0A5D /* Pods_petCityRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_petCityRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE151D7B1EA74D7C00AE1D0B /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		BE151D7C1EA74D7C00AE1D0B /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		BE27821B1E9E119F006181AF /* FourthInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthInfoViewController.swift; sourceTree = "<group>"; };
 		BE6F29BE1E94BBBB009A59C4 /* petCityRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petCityRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6F29C11E94BBBB009A59C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BE151D7A1EA74D6900AE1D0B /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				BE151D7B1EA74D7C00AE1D0B /* OverlayView.swift */,
+				BE151D7C1EA74D7C00AE1D0B /* OverlayView.xib */,
+			);
+			name = CustomView;
+			sourceTree = "<group>";
+		};
 		BE2782191E9DF5FC006181AF /* NewRegister */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +130,7 @@
 		BE6F29C01E94BBBB009A59C4 /* petCityRegister */ = {
 			isa = PBXGroup;
 			children = (
+				BE151D7A1EA74D6900AE1D0B /* CustomView */,
 				BE2782191E9DF5FC006181AF /* NewRegister */,
 				BEE9CF3E1E9D2C3F00E36186 /* LoadStore */,
 				BE6F29E01E94D670009A59C4 /* Object */,
@@ -226,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE6F29CC1E94BBBB009A59C4 /* LaunchScreen.storyboard in Resources */,
+				BE151D7E1EA74D7C00AE1D0B /* OverlayView.xib in Resources */,
 				BE6F29C91E94BBBB009A59C4 /* Assets.xcassets in Resources */,
 				BE6F29C71E94BBBB009A59C4 /* Main.storyboard in Resources */,
 			);
@@ -295,6 +310,7 @@
 				BE6F29C41E94BBBB009A59C4 /* ViewController.swift in Sources */,
 				BE7A22961E9732A300EBF36A /* ThirdViewController.swift in Sources */,
 				BEE9CF461E9D589400E36186 /* ThirdInfoViewController.swift in Sources */,
+				BE151D7D1EA74D7C00AE1D0B /* OverlayView.swift in Sources */,
 				BEE9CF421E9D38CA00E36186 /* FirstInfoViewController.swift in Sources */,
 				BEE9CF3D1E9D2A7900E36186 /* loadStoreViewController.swift in Sources */,
 				BEFA14D71E9B7005007AEEDC /* AddressClassficiationViewController.swift in Sources */,
